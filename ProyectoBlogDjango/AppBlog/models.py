@@ -9,11 +9,11 @@ class Pelicula(models.Model):
     imagen=models.CharField(max_length=50)
     fechaDeCreacion=models.DateTimeField(auto_now_add=True)
 
-class Informacion(models.Model):
+class Contacto(models.Model):
 
-    descripcion=models.CharField(max_length=5000,null = False)
-    imagen=models.CharField(max_length=50)
-    pelicula_id = models.ForeignKey(Pelicula, on_delete=models.SET_NULL, null = True)
+    nombre=models.CharField(max_length=5000,null = False)
+    email=models.EmailField()
+    cuerpo = models.TextField()
     fechaDeCreacion=models.DateTimeField(auto_now_add=True)
 
 

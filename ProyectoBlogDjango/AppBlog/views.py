@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from .models import Pelicula,Comentario,Informacion
+from .models import Pelicula,Comentario,Contacto
 #from .forms import PeliculaFormulario, PeliculaUrlFormulario,ComentarioFormulario
 from django.http import HttpResponseRedirect
-from django.contrib import messages
-from AppBlog.forms import PeliculaFormulario
+from AppBlog.forms import PeliculaFormulario,ContactoFormulario
 
 # Create you
 # Create your views here.
@@ -82,3 +81,36 @@ class PeliculaDelete(DeleteView):
 
     model = Pelicula
     success_url = "/AppBlog/pelicula/list"
+
+
+
+from .models import Contacto
+from .forms import ContactoFormulario
+from django.shortcuts import render
+
+def contacto(request):
+      
+      if request.method == 'POST':
+
+            miFormulario = ContactoFormulario(request.POST) #aquí mellega toda la información del html
+
+            print(miFormulario)
+
+            if miFormulario.is_valid:   #Si pasó la validación de Django
+
+                  informacion = miFormulario.cleaned_data
+
+                  contacto = Contacto (   nombre=informacion['nombre'], 
+                                          email=informacion['email'],
+                                          cuerpo=informacion['cuerpo']
+                                          ) 
+
+                  contacto.save()
+                  mensaje= 'Fue enviado Exitosamente!'
+                  return render(request, "AppBlog/contacto.html",{"miFormulario":miFormulario,"mensaje":mensaje}) #Vuelvo al inicio o a donde quieran
+
+      else: 
+            mensaje=''
+            miFormulario= ContactoFormulario() #Formulario vacio para construir el html
+
+      return render(request, "AppBlog/contacto.html", {"miFormulario":miFormulario,"mensaje":mensaje})

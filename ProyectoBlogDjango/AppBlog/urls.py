@@ -8,6 +8,8 @@ urlpatterns = [
     path('', views.Inicio, name="Inicio"), #esta era nuestra primer view
     #path('Inicio', views.PeliculaCreacion, name="RegistrarPelicula"), #esta era nuestra primer view
     path('peliculas', views.peliculas, name="Peliculas"), #esta era nuestra primer view
+    path('contacto', views.contacto, name="Contacto"), #esta era nuestra primer view
+
    # path('GuardarPelicula', views.GuardarPelicula, name="GuardarPelicula"), #esta era nuestra primer view
     #path('EliminarPelicula/<int:id>',views.EliminarPelicula,name="EliminarPelicula"),  
    # path('EditarPelicula/<int:id>/', views.EditarPelicula, name="EditarPelicula"),

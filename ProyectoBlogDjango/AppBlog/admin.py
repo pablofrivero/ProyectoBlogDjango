@@ -3,4 +3,4 @@ from  .models import * #importamos el archivo models
 
 # Register your models here.
 admin.site.register(Pelicula)
-admin.site.register(Informacion)
+admin.site.register(Contacto)
