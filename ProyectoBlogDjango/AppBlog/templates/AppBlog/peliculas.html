@@ -1,0 +1,28 @@
+{% extends "AppBlog/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="center">
+   <center> <h1>Aca podes dar de alta una Pelicula</h1> </center>
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    {% if miFormulario.errors %}
+
+    <p style="color: red;"> Están mal los datos, revisar</p>
+
+    {% endif %}
+    <form action="" method="POST">{% csrf_token %}
+
+        <!-- Acá está la magia de Django-->
+        
+        <table>
+            {{ miFormulario|crispy }}
+        </table>
+
+        <input type="submit" class="btn btn-primary btn-block" value="Enviar">
+
+    </form>
+    <br>
+    <a type="button" class="btn btn-secondary  btn-block" href="{% url 'List'  %}">Ir a la lista de Peliculas <i class="fa fa-film" aria-hidden="true"></i></a>
+</div>
+{% endblock %}

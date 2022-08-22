@@ -1,0 +1,22 @@
+{% extends 'AppBlog/base.html' %}
+
+{% block content %}
+    <center><h1>Bienvenido a DjangoBlog!</h1></center>
+    <div class="center">
+        {% for pelicula in peliculas %}
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{pelicula.titulo}} - {{pelicula.estreno}}</h5>
+                <p class="card-text">{{pelicula.descripcion}}</p>
+                <a type="button" class="btn btn-primary btn-block btn-sm" href="{% url 'Detail' pelicula.id %}">IR</i></a>
+            
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

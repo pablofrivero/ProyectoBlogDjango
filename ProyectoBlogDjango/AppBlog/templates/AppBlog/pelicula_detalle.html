@@ -1,0 +1,18 @@
+{% extends "AppBlog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+<div class="center">
+   <h1>Información de la Pelicula</h1>
+
+    <figure class="figure">
+        <img src="{% static 'AppFlix/img/' %}{{p.path_img}}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+        <figcaption class="figure-caption text-right"><center>{{pelicula.titulo}} - {{pelicula.fechaDeEstreno}} </center> </figcaption>
+    </figure>
+    <div></div>
+    <a type="button" class="btn btn-secondary  btn-block" href="{% url 'List'  %}">Volver...</a>
+
+</div>
+{% endblock %}

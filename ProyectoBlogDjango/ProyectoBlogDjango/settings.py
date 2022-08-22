@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles','AppBlog'
+    'django.contrib.staticfiles',
+    'AppBlog',
+    'crispy_forms',
     
 ]
 
@@ -51,7 +53,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ProyectoBlogDjango.urls'
-
+#Agrego bootstrap
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

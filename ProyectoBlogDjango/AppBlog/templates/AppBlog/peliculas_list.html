@@ -1,0 +1,35 @@
+{% extends "AppBlog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <div class="center">
+        <h1>En esta sección podes modificar algun dato de la Película</h1>
+
+            <table class="table table-bordered " border="1">
+            <tr>
+                <th>Título</th>
+                <th>Fecha de Estreno</th>
+                <th>Acción</th>
+            </tr>
+            {% for pelicula in object_list %}
+                <tr>
+                    <td>{{pelicula.titulo}}</td>
+                    <td>{{pelicula.fechaDeEstreno}}</td>
+                    <td>
+                        <a type="button" class="btn btn-info btn-sm" href="{% url 'Detail' pelicula.id %}"><i class="fa fa fa-eye" aria-hidden="true"></i></a>
+                        <a type="button" class="btn btn-warning btn-sm" href="{% url 'Edit' pelicula.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a type="button" class="btn btn-danger btn-sm" href="{% url 'Delete' pelicula.id %}" ><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </tr>
+    
+                </tr>
+                
+            {% endfor %}
+        </table>
+    <a type="button" class="btn btn-primary  btn-block" href="{% url 'New'  %}">Nueva Pelicula</a>
+
+</div>
+{% endblock %}
