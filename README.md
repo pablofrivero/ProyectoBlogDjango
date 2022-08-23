@@ -1,8 +1,10 @@
 # ProyectoBlogDjango
 Este sistema permite acceder a:
+
 - Peliculas: podes dar de Alta, Modificar, Eliminar una Pelicula
 - Blog: crear un post.
 - Contacto: Contactarse con el administrador por medio del módulo "Contacto".
+- Buscar: En el header tenes la posibilidad de buscar algun Post creado.
 
 Este codigo contiene:
 Vistas
