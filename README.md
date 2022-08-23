@@ -2,7 +2,7 @@
 Este sistema permite acceder a:
 - Peliculas: podes dar de Alta, Modificar, Eliminar una Pelicula
 - Blog: crear un post.
-- Contacto. Contactarse con el administrador por medio del módulo "Contacto".
+- Contacto: Contactarse con el administrador por medio del módulo "Contacto".
 
 Este codigo contiene:
 Vistas
