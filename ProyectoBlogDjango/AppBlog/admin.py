@@ -5,4 +5,4 @@ from  .models import * #importamos el archivo models
 admin.site.register(Pelicula)
 admin.site.register(Contacto)
 admin.site.register(Post)
-
+admin.site.register(Comentario)

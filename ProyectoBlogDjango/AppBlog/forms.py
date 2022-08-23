@@ -10,7 +10,7 @@ class PeliculaFormulario(forms.Form):
     imagen = forms.CharField()
 
 
-from .models import Contacto,Post
+from .models import Contacto,Post,Comentario
 
 class ContactoFormulario(forms.ModelForm):
     class Meta:
@@ -40,3 +40,14 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
         # Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
+
+
+
+# Formulario Comentario
+class ComentarioFormulario(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ('nombre', 'email', 'contenido')
+        widgets = {
+            'contenido': forms.Textarea(attrs={'rows': 4}),
+        }

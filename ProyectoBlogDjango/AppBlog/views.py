@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Pelicula,Comentario,Contacto,Post
 #from .forms import PeliculaFormulario, PeliculaUrlFormulario,ComentarioFormulario
 from django.http import HttpResponseRedirect
-from AppBlog.forms import PeliculaFormulario,ContactoFormulario,UserRegisterForm
+from AppBlog.forms import PeliculaFormulario,ContactoFormulario,UserRegisterForm,ComentarioFormulario
 
 # Create you
 # Create your views here.
@@ -121,9 +121,9 @@ class PostListar(ListView):
       queryset = Post.objects.filter(status=1).order_by('-creado')
       template_name = 'posts.html'
 
-class PostDetalle(DetailView):
-      model = Post
-      template_name = 'post_detalle.html'
+#class PostDetalle(DetailView):
+#      model = Post
+#      template_name = 'post_detalle.html'
 
 class PostCrear(CreateView):
       model = Post
@@ -132,8 +132,25 @@ class PostCrear(CreateView):
       
       
       
-      
-      
+#class PostDetalle(DetailView):
+#      model = Post
+#      template_name = 'AppBlog/post_detalle.html'
+#      context_object_name = 'object'
+
+
+def PostDetalle(request,slug):
+      post = Post.objects.get(slug=slug)
+      if( request.method == 'POST'):
+            form = ComentarioFormulario(request.POST)
+            if(form.is_valid()):
+                  comentario=form.save(commit=False)
+                  comentario.post=post
+                  comentario.save()
+                  
+                  return redirect('PostDetalle',slug=post.slug)
+      else:
+            form=ComentarioFormulario() 
+      return render(request,'AppBlog/post_detalle.html',{'post':post,'form':form})
 
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
