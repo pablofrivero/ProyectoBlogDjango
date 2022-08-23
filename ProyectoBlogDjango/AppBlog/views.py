@@ -194,7 +194,7 @@ def register(request):
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
+#@login_required
 def inicio(request):
 
     return render(request, "AppCoder/InicioTemplate.html")
