@@ -76,4 +76,5 @@ El acceso al sistema creado es :
 [http://localhost:8000/AppBlog/](http://127.0.0.1:8000/AppBlog/)
 
 Inicio
-https://github.com/pablofrivero/ProyectoBlogDjango/issues/1#issue-1347943441
+![inicio-blog](https://user-images.githubusercontent.com/93736464/186167561-9c05eb24-2f61-4cc2-8ea9-1b0f08bb4097.jpg)
+
