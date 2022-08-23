@@ -66,6 +66,7 @@
           <a class="nav-link {% if request.path == url %}active{% endif %}" aria-current="page" href="{% url 'Contacto' %}">Contacto</a>
         </li>
       </ul>
+      {{mensaje}}!!
       <form class="form-inline my-2 my-lg-0" action="{% url 'Inicio' %}" method="GET">
         <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar Post" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>

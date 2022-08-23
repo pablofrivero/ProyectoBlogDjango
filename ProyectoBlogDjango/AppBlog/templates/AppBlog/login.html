@@ -1,0 +1,15 @@
+{% extends 'AppBlog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="center">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form|crispy}}
+
+            <button type="submit"  class="btn btn-primary btn-block">Inciar sesion</button>
+
+        </form>
+
+    </div>
+{% endblock %}

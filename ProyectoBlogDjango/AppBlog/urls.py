@@ -2,6 +2,8 @@ from django.urls import path
 
 from AppBlog import views
 
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
    
@@ -28,5 +30,9 @@ urlpatterns = [
     path('post', views.PostListar.as_view(), name='Post'),
     path('<slug:slug>/', views.PostDetalle.as_view(), name='PostDetalle'),
     path(r'^nuevoPost$', views.PostCrear.as_view(), name='NewPost'),
+
+    path('login', views.login_request, name="Login"),
+    path('register', views.register, name='Register'),
+    path('logout', LogoutView.as_view(template_name='AppBlog/logout.html'), name='Logout'),
 
 ]

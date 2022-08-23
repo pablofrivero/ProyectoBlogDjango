@@ -55,6 +55,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'ProyectoBlogDjango.urls'
 #Agrego bootstrap
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#PARA LOGIN
+LOGIN_URL = '/AppCoder/login'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
