@@ -71,4 +71,4 @@ Starting development server at
 [http://localhost:8000/] (http://localhost:8000/)
 
 El acceso al sistema creado es :
-[http://localhost:8000/](http://127.0.0.1:8000/AppBlog/)
+[http://localhost:8000/AppBlog/](http://127.0.0.1:8000/AppBlog/)
