@@ -15,7 +15,7 @@ Urls
 
 ## Capturas de cada Módulo:
 
-###Inicio
+* Inicio
 ![inicio-blog](https://user-images.githubusercontent.com/93736464/186167561-9c05eb24-2f61-4cc2-8ea9-1b0f08bb4097.jpg)
 
 ###Peliculas
