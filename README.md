@@ -74,3 +74,6 @@ Starting development server at
 
 El acceso al sistema creado es :
 [http://localhost:8000/AppBlog/](http://127.0.0.1:8000/AppBlog/)
+
+Inicio
+https://github.com/pablofrivero/ProyectoBlogDjango/issues/1#issue-1347943441
