@@ -1,0 +1,16 @@
+{% extends "AppBlog/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<center> <h1>Aca podes crear un Post!</h1> </center>
+
+    <form method="post">
+        
+        {% csrf_token %}
+        {{ form|crispy}}
+
+        <input type="submit" class="btn btn-primary btn-block" value="Enviar">
+    </form>
+
+{% endblock %}

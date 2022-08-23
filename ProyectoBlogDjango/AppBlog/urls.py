@@ -24,5 +24,9 @@ urlpatterns = [
     path(r'^nuevo$', views.PeliculaCreacion.as_view(), name='New'),
     path(r'^editar/(?P<pk>\d+)$', views.PeliculaUpdate.as_view(), name='Edit'),
     path(r'^borrar/(?P<pk>\d+)$', views.PeliculaDelete.as_view(), name='Delete'),
+   
+    path('post', views.PostListar.as_view(), name='Post'),
+    path('<slug:slug>/', views.PostDetalle.as_view(), name='PostDetalle'),
+    path(r'^nuevoPost$', views.PostCrear.as_view(), name='NewPost'),
 
 ]

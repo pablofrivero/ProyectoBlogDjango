@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Pelicula,Comentario,Contacto
+from .models import Pelicula,Comentario,Contacto,Post
 #from .forms import PeliculaFormulario, PeliculaUrlFormulario,ComentarioFormulario
 from django.http import HttpResponseRedirect
 from AppBlog.forms import PeliculaFormulario,ContactoFormulario
@@ -11,12 +11,11 @@ from django.db.models import Q
 
 def Inicio(request):
       search_post = request.GET.get('search')
-      peliculas=''
+      post_list=''
       if search_post:
-            peliculas = Pelicula.objects.filter(Q(titulo__icontains=search_post) | Q(descripcion__icontains=search_post))
-      #else:
-      #      peliculas = Pelicula.objects.all().order_by('fechaDeCreacion')
-      return render(request, "AppBlog/InicioTemplate.html" ,{'peliculas':peliculas})
+            post_list = Post.objects.filter(Q(titulo__icontains=search_post) | Q(contenido__icontains=search_post))
+  
+      return render(request, "AppBlog/posts.html" ,{'post_list':post_list})
 
 
 def peliculas(request):
@@ -114,3 +113,19 @@ def contacto(request):
             miFormulario= ContactoFormulario() #Formulario vacio para construir el html
 
       return render(request, "AppBlog/contacto.html", {"miFormulario":miFormulario,"mensaje":mensaje})
+
+
+
+
+class PostListar(ListView):
+      queryset = Post.objects.filter(status=1).order_by('-creado')
+      template_name = 'posts.html'
+
+class PostDetalle(DetailView):
+      model = Post
+      template_name = 'post_detalle.html'
+
+class PostCrear(CreateView):
+      model = Post
+      success_url = "post"
+      fields = ['titulo', 'slug','contenido','status']

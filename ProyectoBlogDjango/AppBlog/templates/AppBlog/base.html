@@ -14,6 +14,21 @@
     <script src="https://cdn.jwplayer.com/players/UVQWMA4o-kGWxh33Q.js"></script>
 
 </head>
+<style>
+  body {
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
+      background-color: #feffff;
+  }
+
+  .head_text {
+      color: rgb(15, 13, 13);
+  }
+
+  .card {
+      box-shadow: 0 16px 48px #E3E7EB;
+  }
+</style>
 <header class="masthead mb-auto">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <img class="logo" src="{% static 'AppBlog/img/logo.png' %}" width="50" alt="logo" id="logo">
@@ -34,22 +49,32 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'Peliculas' %}">Dar de Alta</a>
-            <a class="dropdown-item" href=" {% url 'List' %}">Reporte</a>
+            <a class="dropdown-item" href=" {% url 'List' %}">Ir a Películas</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Proximamente..</a>
           </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Posts
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'NewPost' %}">Crear un Post</a>
+            <a class="dropdown-item" href="{% url 'Post' %}">Ir a los Posts</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if request.path == url %}active{% endif %}" aria-current="page" href="{% url 'Contacto' %}">Contacto</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" action="{% url 'Inicio' %}" method="GET">
-        <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar Pelicula" aria-label="Search">
+        <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar Post" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
       </form>
     </div>
   </nav>
+  
 </header>
+
   <body>
 
 
