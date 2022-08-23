@@ -1,9 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 # ProyectoBlogDjango
 Este sistema permite acceder a:
@@ -41,7 +35,7 @@ Urls
 ![contacto](https://user-images.githubusercontent.com/93736464/186168918-c0e41d79-2135-4e27-9b6c-4c38901d7e43.jpg)
 
 
-
+<p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 **Importante:** Este ejemplo fue probado con python Python 3.10.4 y Django 4.0.6
 
 
@@ -52,6 +46,7 @@ En Linux/Mac tiene que abrir una terminal bash
 ```$ python --version```
 Python 3.X.X 
 Si les aparece la versión todo OK pueden seguir. Caso contrario descarguen python desde este link.
+<p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
 ## Instalar django
 En una terminal cmd o powershell desde windows:
@@ -61,6 +56,7 @@ Linux/Mac:
 
 ```$ pip install django```
 Si no arrojo errores esto es suficiente para poder correr el proyecto.
+<p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
 ## Instalar django-crispy
 ```$pip install django-crispy-forms ```
@@ -73,6 +69,7 @@ windows:
 Linux/Mac:
 
 ```$ git clone https://github.com/pablofrivero/ProyectoBlogDjango.git```
+<p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
 ## Modificar el path donde estan los templates
 Abrir el archivo settings.py, ir a TEMPLATES y Modificar en la variable DIRS por lo sig:
@@ -103,4 +100,5 @@ Starting development server at
 
 El acceso al sistema creado es :
 [http://localhost:8000/AppBlog/](http://127.0.0.1:8000/AppBlog/)
+<p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
