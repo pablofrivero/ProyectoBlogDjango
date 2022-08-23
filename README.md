@@ -46,7 +46,6 @@ En Linux/Mac tiene que abrir una terminal bash
 ```$ python --version```
 Python 3.X.X 
 Si les aparece la versión todo OK pueden seguir. Caso contrario descarguen python desde este link.
-<p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
 ## Instalar django
 En una terminal cmd o powershell desde windows:
