@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AppBlog',
     'crispy_forms',
+    'django.contrib.humanize',
     
 ]
 
@@ -57,7 +58,9 @@ ROOT_URLCONF = 'ProyectoBlogDjango.urls'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #PARA LOGIN
-LOGIN_URL = '/AppCoder/login'
+LOGIN_URL = '/AppBlog/login'
+LOGIN_REDIRECT_URL ='Inicio'
+LOGOUT_REDIRECT_URL ='Login'
 
 TEMPLATES = [
     {

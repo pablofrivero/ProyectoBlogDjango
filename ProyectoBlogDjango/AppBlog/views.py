@@ -4,6 +4,9 @@ from .models import Pelicula,Comentario,Contacto,Post
 from django.http import HttpResponseRedirect
 from AppBlog.forms import PeliculaFormulario,ContactoFormulario,UserRegisterForm,ComentarioFormulario
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create you
 # Create your views here.
 
@@ -87,6 +90,17 @@ from .models import Contacto
 from .forms import ContactoFormulario
 from django.shortcuts import render
 
+
+
+from django.utils.decorators import method_decorator
+
+
+
+
+
+
+
+
 def contacto(request):
       
       if request.method == 'POST':
@@ -118,19 +132,25 @@ def contacto(request):
 
 
 class PostListar(ListView):
+      model=Post
       queryset = Post.objects.filter(status=1).order_by('-creado')
       template_name = 'posts.html'
-
+     
 #class PostDetalle(DetailView):
 #      model = Post
 #      template_name = 'post_detalle.html'
 
+
+
+
 class PostCrear(CreateView):
+
       model = Post
       success_url = "post"
-      fields = ['titulo', 'slug','contenido','status']
+      fields = ['titulo','contenido','status']
       
-      
+
+                  
       
 #class PostDetalle(DetailView):
 #      model = Post
@@ -142,8 +162,10 @@ def PostDetalle(request,slug):
       post = Post.objects.get(slug=slug)
       if( request.method == 'POST'):
             form = ComentarioFormulario(request.POST)
+
             if(form.is_valid()):
                   comentario=form.save(commit=False)
+                  comentario.nombre=request.user      #Le asigno el valor del userlogueadp(esta relacionado por FK con User)
                   comentario.post=post
                   comentario.save()
                   
@@ -172,13 +194,14 @@ def login_request(request):
             if user is not None:
                 login(request, user)
 
-                return render(request, "AppBlog/InicioTemplate.html", {"mensaje":f"Bienvenido {usuario}"})
+            #    return render(request, "AppBlog/InicioTemplate.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request, "AppBlog/InicioTemplate.html", {"usuario": usuario})
             else:
-                return render(request, "AppBlog/InicioTemplate.html", {"mensaje":"Datos incorrectos"})
+                return render(request, "AppBlog/InicioTemplate.html", {"usuario":"Datos incorrectos"})
            
         else:
 
-            return render(request, "AppBlog/InicioTemplate.html", {"mensaje":"Formulario erroneo"})
+            return render(request, "AppBlog/InicioTemplate.html", {"usuario":"Formulario erroneo"})
 
     form = AuthenticationForm()
 
@@ -196,7 +219,7 @@ def register(request):
 
                   username = form.cleaned_data['username']
                   form.save()
-                  return render(request,"AppBlog/InicioTemplate.html" ,  {"mensaje":"Usuario Creado :)"})
+                  return render(request,"AppBlog/InicioTemplate.html" ,  {"mensaje":"Usuario Creado "})
 
       else:
             #form = UserCreationForm()       
@@ -206,12 +229,3 @@ def register(request):
 
 
 
-
-# Para el decorador
-from django.contrib.auth.decorators import login_required
-
-
-#@login_required
-def inicio(request):
-
-    return render(request, "AppCoder/InicioTemplate.html")

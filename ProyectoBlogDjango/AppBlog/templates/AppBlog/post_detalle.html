@@ -1,6 +1,7 @@
 {% extends "AppBlog/base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
     <div class="container">
@@ -33,7 +34,7 @@
                     <div class="card bg-light mb-3">
                         <div class="card-header">
                             <h3 style="font-size:15px;color:Green;">
-                                <strong>{{ comment.nombre}}</strong> - <small>{{comment.fechacreado}}</small>
+                                <strong>{{ comment.nombre}}</strong> - <small>{{comment.fechacreado|naturaltime}}</small>
                             </h3>
                         </div>
                         <div class="card-body">

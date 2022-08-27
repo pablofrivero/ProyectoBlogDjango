@@ -17,10 +17,12 @@ class ContactoFormulario(forms.ModelForm):
         model = Contacto
         fields = ('nombre', 'email', 'cuerpo')
         
+        
+        
 class PostFormulario(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('titulo', 'slug', 'contenido','status')
+        fields = ('titulo', 'contenido','status')
         
         
 
@@ -47,7 +49,7 @@ class UserRegisterForm(UserCreationForm):
 class ComentarioFormulario(forms.ModelForm):
     class Meta:
         model = Comentario
-        fields = ('nombre', 'email', 'contenido')
+        fields = ['contenido']
         widgets = {
             'contenido': forms.Textarea(attrs={'rows': 4}),
         }

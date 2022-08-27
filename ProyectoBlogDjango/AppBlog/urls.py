@@ -2,7 +2,8 @@ from django.urls import path
 
 from AppBlog import views
 
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView,LoginView
+from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [
@@ -21,12 +22,12 @@ urlpatterns = [
     path(r'^editar/(?P<pk>\d+)$', views.PeliculaUpdate.as_view(), name='Edit'),
     path(r'^borrar/(?P<pk>\d+)$', views.PeliculaDelete.as_view(), name='Delete'),
    
-    path('post', views.PostListar.as_view(), name='Post'),
+    path('post', login_required(views.PostListar.as_view()), name='Post'),
    # path('<slug:slug>/', views.PostDetalle.as_view(), name='PostDetalle'),
-    path('<slug:slug>/', views.PostDetalle, name='PostDetalle'),
-    path(r'^nuevoPost$', views.PostCrear.as_view(), name='NewPost'),
+    path('<slug:slug>/', login_required(views.PostDetalle), name='PostDetalle'),
+    path(r'^nuevoPost$', login_required(views.PostCrear.as_view()), name='NewPost'),
 
-    path('login', views.login_request, name="Login"),
+    path('login', LoginView.as_view(template_name='AppBlog/login.html'), name='Login'),
     path('register', views.register, name='Register'),
     path('logout', LogoutView.as_view(template_name='AppBlog/logout.html'), name='Logout'),
 
