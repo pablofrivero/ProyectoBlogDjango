@@ -5,6 +5,8 @@ from AppBlog import views
 from django.contrib.auth.views import LogoutView,LoginView
 from django.contrib.auth.decorators import login_required
 
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
    
@@ -31,4 +33,7 @@ urlpatterns = [
     path('register', views.register, name='Register'),
     path('logout', LogoutView.as_view(template_name='AppBlog/logout.html'), name='Logout'),
 
-]
+] 
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
