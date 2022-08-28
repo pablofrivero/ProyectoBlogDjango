@@ -28,10 +28,12 @@
   .card {
       box-shadow: 0 16px 48px #E3E7EB;
   }
+  
+
 </style>
 <header class="masthead mb-auto">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img class="logo" src="{% static 'AppBlog/img/logo.png' %}" width="50" alt="logo" id="logo">
+  <img style="border-radius: 80px; overflow: hidden;width:2%;left:2%;margin-bottom: 0;"  src="{{ request.user.perfil.image.url }}" alt="{{request.user.username}}" class="circle responsive-img valign profile-image">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -68,10 +70,15 @@
       </ul>
       {% if  request.user.is_authenticated %}
       <ul class="navbar-nav mr-rigth">
-        <li class="nav-item"></li>
-          <h5 style="margin-bottom: 0;">{{user.first_name}}&nbsp;&nbsp;</h5>
-           </li>
+        <li class="nav-item">
+        </li>
       </ul>
+      <ul class="navbar-nav mr-rigth">
+        <li class="nav-item">
+          <h5 style="margin-bottom: 0;">{{user.first_name}}&nbsp;&nbsp;</h5>
+        </li>
+      </ul>
+      
       {% endif %}
       <form class="form-inline my-2 my-lg-0" action="{% url 'Inicio' %}" method="GET">
         <input class="form-control mr-sm-2" type="text" name="search" placeholder="Buscar Post" aria-label="Search">
@@ -90,8 +97,6 @@
 
 
   <div class="content container">
-    <img  style="width:60%" src="{{ request.user.perfil.image.url }}" alt="{{request.user.username}}" class="circle responsive-img valign profile-image">
-
     {% block content %}
  
     {% endblock %}
