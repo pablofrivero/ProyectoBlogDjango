@@ -241,21 +241,22 @@ def profile(request):
       
       if request.method == 'POST':
             print(request.user.perfil)
+            print(request.POST['biografia'])
             form_perfil =PerfilFormulario(request.POST,
                                           request.FILES,
                                           request.POST['biografia'],
                                           instance=request.user.perfil)
             if form_perfil.is_valid():
                   form_perfil.save()
-                  mensaje= 'Se han guardado los cambios Exitosamente!'              
+                  mensaje= 'Se han guardado los cambios Exitosamente!'    
+                  perfilFormulario=PerfilFormulario(instance=request.user.perfil)
             else:
                   print('eeror al intentar guardar')
       else:
-            mensaje='que onda else'
+            mensaje='que onda else'      
+            perfilFormulario=PerfilFormulario(instance=request.user.perfil)
             print(request.method)
             
       user_profile=Perfil.objects.get(usuario=request.user)            
-      perfilFormulario= PerfilFormulario() #Formulario vacio para construir el html 
-      print(mensaje)
 
       return render(request, "AppBlog/perfil.html",{"user_profile":user_profile,"perfilFormulario":perfilFormulario,"mensaje":mensaje})
