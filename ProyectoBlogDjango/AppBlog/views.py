@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
-from .models import Pelicula,Comentario,Contacto,Post
+from .models import Pelicula,Comentario,Contacto, Perfil,Post
 #from .forms import PeliculaFormulario, PeliculaUrlFormulario,ComentarioFormulario
 from django.http import HttpResponseRedirect
-from AppBlog.forms import PeliculaFormulario,ContactoFormulario,UserRegisterForm,ComentarioFormulario
+from AppBlog.forms import PeliculaFormulario,ContactoFormulario,UserRegisterForm,ComentarioFormulario,PerfilFormulario
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create you
 # Create your views here.
@@ -50,10 +51,13 @@ def peliculas(request):
 
 
 
+
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.urls import reverse
 from django.views.generic.edit import UpdateView,DeleteView,CreateView
+
+from django.views.generic.base import TemplateView
 
 
 class PeliculaList(ListView):
@@ -179,33 +183,36 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
 
+
+
+
 def login_request(request):
 
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data = request.POST)
+      if request.method == 'POST':
+            form = AuthenticationForm(request, data = request.POST)
 
-        if form.is_valid():  # Si pasó la validación de Django
+            if form.is_valid():  # Si pasó la validación de Django
 
-            usuario = form.cleaned_data.get('username')
-            contrasenia = form.cleaned_data.get('password')
+                  usuario = form.cleaned_data.get('username')
+                  contrasenia = form.cleaned_data.get('password')
 
-            user = authenticate(username= usuario, password=contrasenia)
+                  user = authenticate(username= usuario, password=contrasenia)
 
-            if user is not None:
-                login(request, user)
+                  if user is not None:
+                        login(request, user)
 
-            #    return render(request, "AppBlog/InicioTemplate.html", {"mensaje":f"Bienvenido {usuario}"})
-                return render(request, "AppBlog/InicioTemplate.html", {"usuario": usuario})
+                        #    return render(request, "AppBlog/InicioTemplate.html", {"mensaje":f"Bienvenido {usuario}"})
+                        return render(request, "AppBlog/InicioTemplate.html", {"usuario": usuario})
+                  else:
+                        return render(request, "AppBlog/InicioTemplate.html", {"usuario":"Datos incorrectos"})
+            
             else:
-                return render(request, "AppBlog/InicioTemplate.html", {"usuario":"Datos incorrectos"})
-           
-        else:
 
-            return render(request, "AppBlog/InicioTemplate.html", {"usuario":"Formulario erroneo"})
+                  return render(request, "AppBlog/InicioTemplate.html", {"usuario":"Formulario erroneo"})
 
-    form = AuthenticationForm()
+      form = AuthenticationForm()
 
-    return render(request, "AppBlog/login.html", {"form": form})
+      return render(request, "AppBlog/login.html", {"form": form})
 
 
 # Vista de registro
@@ -227,5 +234,28 @@ def register(request):
 
       return render(request,"AppBlog/registro.html" ,  {"form":form})
 
+import os
 
+@login_required
+def profile(request):
+      
+      if request.method == 'POST':
+            print(request.user.perfil)
+            form_perfil =PerfilFormulario(request.POST,
+                                          request.FILES,
+                                          request.POST['biografia'],
+                                          instance=request.user.perfil)
+            if form_perfil.is_valid():
+                  form_perfil.save()
+                  mensaje= 'Se han guardado los cambios Exitosamente!'              
+            else:
+                  print('eeror al intentar guardar')
+      else:
+            mensaje='que onda else'
+            print(request.method)
+            
+      user_profile=Perfil.objects.get(usuario=request.user)            
+      perfilFormulario= PerfilFormulario() #Formulario vacio para construir el html 
+      print(mensaje)
 
+      return render(request, "AppBlog/perfil.html",{"user_profile":user_profile,"perfilFormulario":perfilFormulario,"mensaje":mensaje})

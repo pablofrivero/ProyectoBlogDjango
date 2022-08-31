@@ -1,0 +1,26 @@
+{% extends 'AppBlog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Perfil Usuario{% endblock title %}
+
+{% block content %}
+    <div class="center">
+
+            <center>
+                {% if request.user.perfil.image %}
+                 <img style="border-radius: 100px; overflow: hidden;width:10%;left:10%;margin-bottom: 0;"  src="{{ user_profile.image.url }}" class="circle responsive-img valign profile-image">
+                {% else %}
+                 <small>No tiene una imagen cargada</small>
+                {% endif %}
+                 <br>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ perfilFormulario|crispy }}
+                    <input type="submit" class="btn btn-primary btn-block" >
+                </form>     
+                <p><a href="{% url 'Inicio' %}">Volver al Inicio</a></p>
+
+            </center>
+    </div>
+{% endblock %}

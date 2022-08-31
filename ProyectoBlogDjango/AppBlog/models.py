@@ -33,12 +33,15 @@ class Perfil(models.Model):
 
     
     def __str__(self):
-        return f'Perfil de {self.usuario.username}'
+        return f'{self.usuario.username} Profile'
 
 
 
 from ProyectoBlogDjango.utils import unique_slug_generator
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save,post_save
+from .signals import create_profile
+   
+post_save.connect(create_profile,sender=User)
 
 class Post(models.Model):
     titulo = models.CharField(max_length=200, unique=True)

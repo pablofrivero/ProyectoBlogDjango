@@ -10,7 +10,7 @@ class PeliculaFormulario(forms.Form):
     imagen = forms.CharField()
 
 
-from .models import Contacto,Post,Comentario
+from .models import Contacto,Post,Comentario,Perfil
 
 class ContactoFormulario(forms.ModelForm):
     class Meta:
@@ -52,4 +52,14 @@ class ComentarioFormulario(forms.ModelForm):
         fields = ['contenido']
         widgets = {
             'contenido': forms.Textarea(attrs={'rows': 4}),
+        }
+
+
+#Formulario Perfil
+class PerfilFormulario(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        fields = ['image','biografia']
+        widgets = {
+            'biografia': forms.Textarea(attrs={'rows': 4}),
         }

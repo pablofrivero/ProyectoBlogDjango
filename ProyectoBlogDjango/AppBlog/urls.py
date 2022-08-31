@@ -23,7 +23,9 @@ urlpatterns = [
     path(r'^nuevo$', views.PeliculaCreacion.as_view(), name='New'),
     path(r'^editar/(?P<pk>\d+)$', views.PeliculaUpdate.as_view(), name='Edit'),
     path(r'^borrar/(?P<pk>\d+)$', views.PeliculaDelete.as_view(), name='Delete'),
-   
+
+    path('profile', views.profile, name='profile'),
+
     path('post', login_required(views.PostListar.as_view()), name='Post'),
    # path('<slug:slug>/', views.PostDetalle.as_view(), name='PostDetalle'),
     path('<slug:slug>/', login_required(views.PostDetalle), name='PostDetalle'),
@@ -32,6 +34,7 @@ urlpatterns = [
     path('login', LoginView.as_view(template_name='AppBlog/login.html'), name='Login'),
     path('register', views.register, name='Register'),
     path('logout', LogoutView.as_view(template_name='AppBlog/logout.html'), name='Logout'),
+
 
 ] 
 
