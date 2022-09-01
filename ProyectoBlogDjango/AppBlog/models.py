@@ -51,6 +51,7 @@ class Post(models.Model):
     contenido = RichTextField()#models.TextField()
     creado = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    creadopor = models.ForeignKey(User, on_delete=models.CASCADE,default = "",related_name='usuarios')
 
     class Meta:
         ordering = ['-creado']

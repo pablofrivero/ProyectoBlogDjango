@@ -154,6 +154,9 @@ class PostCrear(CreateView):
       model = Post
       success_url = "post"
       fields = ['titulo','contenido','status']
+      def form_valid(self, form):
+        form.instance.creadopor = self.request.user
+        return super(PostCrear, self).form_valid(form)
       
 
                   

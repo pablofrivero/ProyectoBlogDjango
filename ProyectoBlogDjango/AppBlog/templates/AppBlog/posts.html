@@ -18,7 +18,7 @@
                             
                             <div class="card-body">
                                 <center><h2 class="card-title">{{ post.titulo }}</h2>
-                                    <small><p class="card-text text-muted h6">Creado hace {{ post.creado|naturaltime}} </p>
+                                    <small><p class="card-text text-muted h6">Contenido creado {{ post.creado|naturaltime}} por {{post.creadopor}} </p>
                                     <a href="{% url 'PostDetalle' post.slug  %}" class="btn btn-primary">Leer Más &rarr;</a>
                                 </center>
                             </div>
