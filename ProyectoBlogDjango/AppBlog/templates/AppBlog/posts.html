@@ -1,25 +1,55 @@
 {% extends "AppBlog/base.html" %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 
 {% load static %}
-
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 {% block content %}
         <div class="container">
-            <div class="row">
-                <!-- Blog Entries Column -->
-                <div class="ccol-md card mb-4  mt-3 center  top">
-                    {% for post in post_list %}
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h2 class="card-title">{{ post.titulo }}</h2>
-                            <p class="card-text text-muted h6">{{ post.creado}} </p>
-                            <p class="card-text">{{post.contenido|slice:":200" }}</p>
-                            <a href="{% url 'PostDetalle' post.slug  %}" class="btn btn-primary">Leer Más &rarr;</a>
-                        </div>
+                <br>
+                {% if post_list %}
+                    <center><h2>Estos con los Posts Creados Por la comunidad!</h2></center>
+                {% endif %}
+                <br>
+                {% for post in post_list %}
+                    <div class="card text-center">
+                        <div class="row">
+                            
+                            <div class="card-body">
+                                <center><h2 class="card-title">{{ post.titulo }}</h2>
+                                    <small><p class="card-text text-muted h6">Creado hace {{ post.creado|naturaltime}} </p>
+                                    <a href="{% url 'PostDetalle' post.slug  %}" class="btn btn-primary">Leer Más &rarr;</a>
+                                </center>
+                            </div>
+                         </div>
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-*-*
+                    <br>
+                {% endfor %}
+    
+        <!--Creo la Paginacion de los Post-->
+        {% if is_paginated %}
+        <h5>
+            <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }} </a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+            </ul>
+        </h5>
+      {% endif %}
+    </div>
 {% endblock %}

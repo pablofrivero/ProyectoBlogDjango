@@ -10,7 +10,7 @@
                 <div class="card-body">
                 <center><h1 style="color:Green;">{{ post.titulo }} </h1>
                 <p class=" text-muted">Creado el {{ post.creado }}</p></center>
-                <p class="card-text ">{{ post.contenido | safe }}</p>
+                <center><p class="card-text ">{{ post.contenido | safe }}</p></center>
                 <small>  
                     {% with  post.comments.count as total_comments %}
                         <p>Actualmente hay {{ total_comments }} comentarios {{ total_comments|pluralize }} en este post</p> 

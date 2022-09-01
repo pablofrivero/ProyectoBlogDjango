@@ -1,5 +1,6 @@
 from django.db import models
 # Create your models here.
+from ckeditor.fields import RichTextField
 
 class Pelicula(models.Model):
 
@@ -47,7 +48,7 @@ class Post(models.Model):
     titulo = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, null=True,blank=True)
     actualizado = models.DateTimeField(auto_now= True)
-    contenido = models.TextField()
+    contenido = RichTextField()#models.TextField()
     creado = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 

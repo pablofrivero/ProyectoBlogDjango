@@ -133,11 +133,13 @@ def contacto(request):
       return render(request, "AppBlog/contacto.html", {"miFormulario":miFormulario,"mensaje":mensaje})
 
 
+from django.core.paginator import Paginator
 
 
 class PostListar(ListView):
       model=Post
       queryset = Post.objects.filter(status=1).order_by('-creado')
+      paginate_by = 4
       template_name = 'posts.html'
      
 #class PostDetalle(DetailView):

@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AppBlog.apps.AppblogConfig',
     'crispy_forms',
-    'django.contrib.humanize'    
+    'django.contrib.humanize' ,
+    'ckeditor',
+   
 ]
 
 MIDDLEWARE = [
@@ -141,3 +143,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Dirección de archivo multimedia
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_UPLOAD_PATH = 'media/'
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'height': 'full', 
+        'width': 'full', 
+    },
+}
