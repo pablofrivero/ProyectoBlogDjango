@@ -99,11 +99,16 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 
 
+from django.shortcuts import get_object_or_404
 
 
-
-
-
+def PostDelete(request, post_id):
+      try:
+            post =Post.objects.get(id=post_id,creadopor=request.user)
+            post.delete()
+            return redirect('Inicio')
+      except Post.DoesNotExist:
+            return redirect('Inicio')
 
 def contacto(request):
       
@@ -146,8 +151,14 @@ class PostListar(ListView):
 #      model = Post
 #      template_name = 'post_detalle.html'
 
-
-
+class PostUsuarios(ListView):
+      model=Post
+      paginate_by = 4
+      template_name = 'posts_usuarios.html'
+      def get_queryset(self):
+        queryset = super(PostUsuarios, self).get_queryset()
+        queryset = queryset.filter(creadopor=self.request.user)
+        return queryset
 
 class PostCrear(CreateView):
 

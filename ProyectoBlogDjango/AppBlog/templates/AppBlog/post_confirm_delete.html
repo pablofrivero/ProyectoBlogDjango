@@ -1,0 +1,16 @@
+{% extends "AppBlog/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="center">
+
+    <form method="post">{% csrf_token %}
+        <br>
+        ¿Estás seguro que deseas borrar el Post "{{ object.titulo }}"?
+        <input type="submit" class="btn btn-danger " value="SI">
+        <a type="button" class="btn btn-secondary btn-lg" href="{% url 'List' %}">NO!</a>
+
+    </form>
+</div>
+{% endblock %}

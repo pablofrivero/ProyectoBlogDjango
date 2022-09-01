@@ -31,6 +31,11 @@ urlpatterns = [
     path('<slug:slug>/', login_required(views.PostDetalle), name='PostDetalle'),
     path(r'^nuevoPost$', login_required(views.PostCrear.as_view()), name='NewPost'),
 
+    path('postusuarios', views.PostUsuarios.as_view(), name='PostUsuarios'),
+	path('postdelete/<int:post_id>/', views.PostDelete, name='PostDelete'),
+
+
+
     path('login', LoginView.as_view(template_name='AppBlog/login.html'), name='Login'),
     path('register', views.register, name='Register'),
     path('logout', LogoutView.as_view(template_name='AppBlog/logout.html'), name='Logout'),
