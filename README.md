@@ -56,7 +56,7 @@ Si no arrojo errores esto es suficiente para poder correr el proyecto.
 ## Instalar django-crispy
 ```$pip install django-crispy-forms ```
 
-## Instalar django-crispy
+## Instalar django-ckeditor
 ```$pip install django-ckeditor ```
 
 
