@@ -4,6 +4,13 @@
     <center><h1>Bienvenido a DjangoBlog!</h1></center>
     <div class="center">
         <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div class="row">
                 <!-- Blog Entries Column -->
                 <div class="col-md-8 mt-3 left">
@@ -19,6 +26,7 @@
                     {% endfor %}
                 </div>
             </div>
+            
         </div>
 
     </div>

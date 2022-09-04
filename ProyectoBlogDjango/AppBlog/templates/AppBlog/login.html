@@ -3,14 +3,16 @@
 
 {% block content %}
     <div class="center">
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form|crispy}}
+            <form action="" method="POST">
+                {% csrf_token %}
+                
+                {{ form|crispy}}
 
-            <button type="submit"  class="btn btn-primary btn-block">Inciar sesion</button>
+                <button type="submit"  class="btn btn-primary btn-block">Inciar sesion</button>
 
-        </form>
-        <center><small><a href="{% url 'Register' %}">No tengo una cuenta. Entonces hace click aca!</a></small></center>
-
+            </form>
+            <center><small><a href="{% url 'Register' %}">No tengo una cuenta. Entonces hace click aca!</a></small></center>
+        </div>
     </div>
+    
 {% endblock %}

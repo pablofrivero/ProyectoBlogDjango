@@ -43,7 +43,18 @@ class UserRegisterForm(UserCreationForm):
         # Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
 
+class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(max_length=100,
+                               required=True,
+                               label="Usuario",
+                               widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True,
+                             label="Email",
+                             widget=forms.TextInput(attrs={'class': 'form-control'}))
 
+    class Meta:
+        model = User
+        fields = ['username', 'email']
 
 # Formulario Comentario
 class ComentarioFormulario(forms.ModelForm):
@@ -59,7 +70,7 @@ class ComentarioFormulario(forms.ModelForm):
 class PerfilFormulario(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['image','biografia']
+        fields = ['nombre','apellido','image','link','biografia']
         widgets = {
             'biografia': forms.Textarea(attrs={'rows': 4}),
         }

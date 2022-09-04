@@ -34,7 +34,7 @@
 <header class="masthead mb-auto">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   {% if request.user.perfil.image %}
-    <img style="border-radius: 80px; overflow: hidden;width:2%;left:2%;margin-bottom: 0;"  src="{{ request.user.perfil.image.url }}" alt="{{request.user.username}}" class="circle responsive-img valign profile-image">
+    <img style="border-radius: 80px; overflow: hidden;width:2%;left:2%;margin-bottom: 0;"  src="{{ request.user.perfil.image.url }}" alt="{{request.user.perfil.nombre}}" class="circle responsive-img valign profile-image">
   {% endif %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,18 +44,6 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link {% if request.path == url %}active{% endif %}" aria-current="page" href="{% url 'Inicio' %}">Inicio</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Peliculas
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'Peliculas' %}">Dar de Alta</a>
-            <a class="dropdown-item" href=" {% url 'List' %}">Ir a Películas</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Proximamente..</a>
-          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,6 +60,9 @@
         <li class="nav-item">
           <a class="nav-link {% if request.path == url %}active{% endif %}" aria-current="page" href="{% url 'Contacto' %}">Contacto</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == url %}active{% endif %}" aria-current="page" href="{% url 'acerca' %}">Acerca</a>
+        </li>
       </ul>
       {% if  request.user.is_authenticated %}
       <ul class="navbar-nav mr-rigth">
@@ -80,7 +71,7 @@
       </ul>
       <ul class="navbar-nav mr-rigth">
         <li class="nav-item">
-          <a class="nav-link {% if request.path == url %}active{% endif %}" aria-current="page" href="{% url 'profile' %}">{{user.first_name}}&nbsp;&nbsp;</a>
+          <a class="nav-link {% if request.path == url %}active{% endif %}" aria-current="page" href="{% url 'profile' %}">{{request.user.perfil.nombre}}&nbsp;&nbsp;</a>
         </li>
       </ul>
       

@@ -1,0 +1,23 @@
+{% extends "AppBlog/base.html" %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+{% load static %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% block content %}
+    <br>
+    <h4>¡Bienvenid@ al Blog!</h4>
+    <p>
+    Es un blog en el cual podras crear Post!, Editarlos, eliminarlos.</p>
+    <p>
+    Tambien vas a poder comentar otros Post!. </p>
+    <p><h5>Queres contactarte conmigo por sugerencias??</h5></p>
+    <p>Hacelo desde Contacto!</p>
+
+    <p>Recorda que para acceder a los POST debes crearte un usuario!</p>
+    <br>
+    <br>
+    
+
+{% endblock %}

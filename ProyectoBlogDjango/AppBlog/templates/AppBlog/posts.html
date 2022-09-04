@@ -7,6 +7,13 @@
 <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 {% block content %}
         <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                 {% endif %}
                 <br>
                 {% if post_list %}
                     <center><h2>Estos con los Posts Creados Por la comunidad!</h2></center>
@@ -18,8 +25,15 @@
                             
                             <div class="card-body">
                                 <center><h2 class="card-title">{{ post.titulo }}</h2>
-                                    <small><p class="card-text text-muted h6">Contenido creado {{ post.creado|naturaltime}} por {{post.creadopor}} </p>
                                     <a href="{% url 'PostDetalle' post.slug  %}" class="btn btn-primary">Leer Más &rarr;</a>
+                                    <br>
+                                    <br>
+                                    <small><p class="card-text text-muted h6">Contenido creado {{ post.creado|naturaltime}} por {{post.creadopor}} </p>
+                                       
+                                        {% with  post.comments.count as total_comments %}
+                                        <i class="fa fa-comments-o" aria-hidden="true" style='font-size:20px'>{{ total_comments }}</i> 
+                                        {% endwith %}   
+                                        <br>
                                 </center>
                             </div>
                          </div>

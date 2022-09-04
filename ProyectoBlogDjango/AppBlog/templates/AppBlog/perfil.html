@@ -6,7 +6,13 @@
 
 {% block content %}
     <div class="center">
-
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             <center>
                 {% if request.user.perfil.image %}
                  <img style="border-radius: 100px; overflow: hidden;width:10%;left:10%;margin-bottom: 0;"  src="{{ user_profile.image.url }}" class="circle responsive-img valign profile-image">
@@ -16,6 +22,9 @@
                  <br>
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    {{user_form|crispy}}
+            
+                    <a href="{% url 'password_change' %}" style="color: red;">Cambiar Contraseña</a>
                     {{ perfilFormulario|crispy }}
                     <input type="submit" class="btn btn-primary btn-block" >
                 </form>     

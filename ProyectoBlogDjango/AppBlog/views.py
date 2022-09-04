@@ -2,11 +2,28 @@ from django.shortcuts import render,redirect
 from .models import Pelicula,Comentario,Contacto, Perfil,Post
 #from .forms import PeliculaFormulario, PeliculaUrlFormulario,ComentarioFormulario
 from django.http import HttpResponseRedirect
-from AppBlog.forms import PeliculaFormulario,ContactoFormulario,UserRegisterForm,ComentarioFormulario,PerfilFormulario
+from AppBlog.forms import PeliculaFormulario,ContactoFormulario,UserRegisterForm,ComentarioFormulario,PerfilFormulario,UpdateUserForm
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .models import Contacto
+from .forms import ContactoFormulario
+from django.shortcuts import render
+
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.urls import reverse
+from django.views.generic.edit import UpdateView,DeleteView,CreateView
+
+from django.views.generic.base import TemplateView
+
+
+
+from django.utils.decorators import method_decorator
+
+
+from django.contrib import messages
 
 # Create you
 # Create your views here.
@@ -18,97 +35,37 @@ def Inicio(request):
       post_list=''
       if search_post:
             post_list = Post.objects.filter(Q(titulo__icontains=search_post) | Q(contenido__icontains=search_post))
-  
+      else:
+            post_list = Post.objects.filter(status=1).order_by('-creado')
       return render(request, "AppBlog/posts.html" ,{'post_list':post_list})
 
 
-def peliculas(request):
-
-      if request.method == 'POST':
-
-            miFormulario = PeliculaFormulario(request.POST) #aquí mellega toda la información del html
-
-            print(miFormulario)
-
-            if miFormulario.is_valid:   #Si pasó la validación de Django
-
-                  informacion = miFormulario.cleaned_data
-
-                  pelicula = Pelicula (titulo=informacion['titulo'], 
-                                       fechaDeEstreno=informacion['fechaDeEstreno'],
-                                       descripcion=informacion['descripcion'],
-                                        imagen=informacion['imagen']) 
-
-                  pelicula.save()
-
-                  return render(request, "AppBlog/InicioTemplate.html") #Vuelvo al inicio o a donde quieran
-
-      else: 
-
-            miFormulario= PeliculaFormulario() #Formulario vacio para construir el html
-
-      return render(request, "AppBlog/peliculas.html", {"miFormulario":miFormulario})
-
-
-
-
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.urls import reverse
-from django.views.generic.edit import UpdateView,DeleteView,CreateView
-
-from django.views.generic.base import TemplateView
-
-
-class PeliculaList(ListView):
-      #ver url https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Generic_views
-    model = Pelicula
-    queryset = Pelicula.objects.all()#.filter(titulo='Desarrollo') ##Aca le agrege un filtro
-    template_name = "AppBlog/peliculas_list.html"
-
-class PeliculaDetalle(DetailView):
-
-    model = Pelicula
-    template_name = "AppBlog/pelicula_detalle.html"
-
-class PeliculaCreacion(CreateView):
-
-    model = Pelicula
-    success_url = "/AppBlog/pelicula/list"
-    fields = ['titulo', 'fechaDeEstreno','descripcion','imagen']
-
-class PeliculaUpdate(UpdateView):
-
-    model = Pelicula
-    success_url = "/AppBlog/pelicula/list"
-    fields = ['titulo', 'fechaDeEstreno','descripcion','imagen']
-
-class PeliculaDelete(DeleteView):
-
-    model = Pelicula
-    success_url = "/AppBlog/pelicula/list"
-
-
-
-from .models import Contacto
-from .forms import ContactoFormulario
-from django.shortcuts import render
-
-
-
-from django.utils.decorators import method_decorator
-
-
-from django.shortcuts import get_object_or_404
+def acerca(request):
+      return render(request, "AppBlog/acerca.html")
 
 
 def PostDelete(request, post_id):
       try:
             post =Post.objects.get(id=post_id,creadopor=request.user)
             post.delete()
-            return redirect('Inicio')
+            messages.success(request, "Se ha eliminado existosamente el Post!")
+            return redirect('PostUsuarios')
       except Post.DoesNotExist:
-            return redirect('Inicio')
+            messages.error(request, "No se ha podido eliminar el Post!")
+            return redirect('PostUsuarios')
+
+
+class PostUpdate(UpdateView):
+
+      model = Post
+      success_url = "post"
+      fields = ['titulo','contenido','status']
+      def form_valid(self, form):
+            form.instance.creadopor = self.request.user
+            super(PostUpdate, self).form_valid(form)
+            messages.success(self.request, "Se han realizado los cambios exitosamente en el Post!")
+            return redirect('PostUsuarios')
+      
 
 def contacto(request):
       
@@ -128,7 +85,7 @@ def contacto(request):
                                           ) 
 
                   contacto.save()
-                  mensaje= 'Fue enviado Exitosamente!'
+                  mensaje= 'Fue enviado Exitosamente el mensaje!'
                   return render(request, "AppBlog/contacto.html",{"miFormulario":miFormulario,"mensaje":mensaje}) #Vuelvo al inicio o a donde quieran
 
       else: 
@@ -166,8 +123,9 @@ class PostCrear(CreateView):
       success_url = "post"
       fields = ['titulo','contenido','status']
       def form_valid(self, form):
-        form.instance.creadopor = self.request.user
-        return super(PostCrear, self).form_valid(form)
+            form.instance.creadopor = self.request.user
+            messages.success(self.request, "Se ha creado el Post Exitosamente!")
+            return super(PostCrear, self).form_valid(form)
       
 
                   
@@ -242,7 +200,8 @@ def register(request):
 
                   username = form.cleaned_data['username']
                   form.save()
-                  return render(request,"AppBlog/InicioTemplate.html" ,  {"mensaje":"Usuario Creado "})
+                  messages.success(request, "Se ha creado exitosamente el Usuario!")
+                  return render(request,"AppBlog/InicioTemplate.html")
 
       else:
             #form = UserCreationForm()       
@@ -258,21 +217,35 @@ def profile(request):
       if request.method == 'POST':
             print(request.user.perfil)
             print(request.POST['biografia'])
+            user_form = UpdateUserForm(request.POST, instance=request.user)
             form_perfil =PerfilFormulario(request.POST,
                                           request.FILES,
                                           request.POST['biografia'],
                                           instance=request.user.perfil)
-            if form_perfil.is_valid():
+            #if form_perfil.is_valid():
+            if user_form.is_valid() and form_perfil.is_valid():
+                  user_form.save()
                   form_perfil.save()
-                  mensaje= 'Se han guardado los cambios Exitosamente!'    
+                  messages.success(request, "Se ha actualizo exitosamente el Perfil!")
                   perfilFormulario=PerfilFormulario(instance=request.user.perfil)
             else:
                   print('eeror al intentar guardar')
       else:
-            mensaje='que onda else'      
+            user_form = UpdateUserForm(instance=request.user)
             perfilFormulario=PerfilFormulario(instance=request.user.perfil)
             print(request.method)
             
       user_profile=Perfil.objects.get(usuario=request.user)            
 
-      return render(request, "AppBlog/perfil.html",{"user_profile":user_profile,"perfilFormulario":perfilFormulario,"mensaje":mensaje})
+      return render(request, "AppBlog/perfil.html",{"user_profile":user_profile,"perfilFormulario":perfilFormulario,"user_form": user_form})
+
+
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
+
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+      template_name = 'AppBlog/change_password.html'
+      success_message = "Se ha realizado el Cambio de Password Exitosamente!"
+      success_url = reverse_lazy('Inicio')

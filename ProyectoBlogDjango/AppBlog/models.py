@@ -28,7 +28,10 @@ STATUS = (
 from django.contrib.auth.models import User
 
 class Perfil(models.Model):
+    nombre =models.CharField(max_length=200)
+    apellido=models.CharField(max_length=200)
     usuario=models.OneToOneField(User,on_delete=models.CASCADE)
+    link = models.CharField(max_length=200)
     biografia=models.CharField(max_length=200)
     image = models.ImageField(upload_to='avatares', null=True, blank = True)
 

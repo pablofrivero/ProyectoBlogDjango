@@ -7,6 +7,13 @@
 <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 {% block content %}
         <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 <br>
                 {% if post_list %}
                     <center><h2>Estos sont todos los Post que has creado!</h2></center>
@@ -18,8 +25,8 @@
                             <div class="card-body">
                                 <center><h2 class="card-title">{{ post.titulo }}</h2>
                                     <small><p class="card-text text-muted h6">Contenido creado {{ post.creado|naturaltime}} por {{post.creadopor}} </p>
-                                    <a href="{% url 'PostDetalle' post.slug  %}" class="btn btn-primary">Leer Más &rarr;</a>
-                                    <a type="button" class="btn btn-warning btn-sm" href="{% url 'Edit' post.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a type="button" class="btn btn-info btn-sm" href="{% url 'PostDetalle' post.slug %}"><i class="fa fa fa-eye" aria-hidden="true"></i></a>
+                                    <a type="button" class="btn btn-warning btn-sm" href="{% url 'PostUpdate' post.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                     <a type="button" class="btn btn-danger btn-sm" href="{% url 'PostDelete' post.id %}" ><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </center>
                             </div>
