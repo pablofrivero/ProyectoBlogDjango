@@ -1,5 +1,7 @@
 
 # ProyectoBlogDjango
+Realizo por Pablo Rivero
+
 Este sistema permite acceder a:
 
 - Blog: crear un post,Editar y eliminar.
