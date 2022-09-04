@@ -56,6 +56,10 @@ Si no arrojo errores esto es suficiente para poder correr el proyecto.
 ## Instalar django-crispy
 ```$pip install django-crispy-forms ```
 
+## Instalar django-crispy
+```$pip install django-ckeditor ```
+
+
 ## Clonar el projecto con git
 windows:
 
