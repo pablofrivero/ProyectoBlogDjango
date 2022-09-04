@@ -17,7 +17,7 @@ Templates
 Urls
 ## Un resumen en Video!🎥
 
-[AppBlog](https://youtu.be/1GX3cfIq6fw)
+[Hace Click Para VER el video!](https://youtu.be/1GX3cfIq6fw)
 
 ## Capturas de cada Módulo:
 
