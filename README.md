@@ -19,14 +19,11 @@ Urls
 ## Capturas de cada Módulo:
 
 * Inicio
-![inicio-blog](https://user-images.githubusercontent.com/93736464/186167561-9c05eb24-2f61-4cc2-8ea9-1b0f08bb4097.jpg)
+![Inicio](https://user-images.githubusercontent.com/93736464/188291750-947434b2-65aa-40e7-91d3-702cef37e054.jpg)
 
 * Post
-![irPost](https://user-images.githubusercontent.com/93736464/186168537-ea11707b-9460-45e9-b7fa-b63b56982e61.jpg)
-![crearpost](https://user-images.githubusercontent.com/93736464/186168550-ff2352fc-dfb1-48f0-9f05-b90a0a2dd82d.jpg)
-
-* Buscar
-![buscar](https://user-images.githubusercontent.com/93736464/186168804-53753eac-4e0b-487b-bd42-3e21e2b75210.jpg)
+![PostCrear](https://user-images.githubusercontent.com/93736464/188291760-1c7af063-6acc-43a7-9086-72a4c3ed00c1.jpg)
+![PostModificar](https://user-images.githubusercontent.com/93736464/188291765-d86ef134-0450-4725-9fb9-412512db2f82.jpg)
 
 * Contacto
 ![contacto](https://user-images.githubusercontent.com/93736464/186168918-c0e41d79-2135-4e27-9b6c-4c38901d7e43.jpg)
