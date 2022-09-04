@@ -2,9 +2,11 @@
 # ProyectoBlogDjango
 Este sistema permite acceder a:
 
-- Peliculas: podes dar de Alta, Modificar, Eliminar una Pelicula
-- Blog: crear un post.
+- Blog: crear un post,Editar y eliminar.
+- Comentarios: Dentro del Blog podes comentar sobre el Blog.
+- Profile: Podes Crear un usuario para acceder al Blog.
 - Contacto: Contactarse con el administrador por medio del módulo "Contacto".
+- Acerca: Podes saber mas sobre el Blog.
 - Buscar: En el header tenes la posibilidad de buscar algun Post creado.
 
 Este codigo contiene:
@@ -17,23 +19,17 @@ Urls
 ## Capturas de cada Módulo:
 
 * Inicio
-![inicio-blog](https://user-images.githubusercontent.com/93736464/186167561-9c05eb24-2f61-4cc2-8ea9-1b0f08bb4097.jpg)
-
-* Peliculas
-![peliculas](https://user-images.githubusercontent.com/93736464/186168362-6c4b6446-d03f-473b-a78c-6f8996f4f6b0.jpg)
-![CRUD-Peliculas](https://user-images.githubusercontent.com/93736464/186168384-39a6ba1d-5a02-4670-bcca-fe1c9783db99.jpg)
-![CrudPeliculas2](https://user-images.githubusercontent.com/93736464/186168388-37d918f3-47e4-48b6-99ad-b1f9311850d6.jpg)
+![Inicio](https://user-images.githubusercontent.com/93736464/188291750-947434b2-65aa-40e7-91d3-702cef37e054.jpg)
 
 * Post
-![irPost](https://user-images.githubusercontent.com/93736464/186168537-ea11707b-9460-45e9-b7fa-b63b56982e61.jpg)
-![crearpost](https://user-images.githubusercontent.com/93736464/186168550-ff2352fc-dfb1-48f0-9f05-b90a0a2dd82d.jpg)
-
-* Buscar
-![buscar](https://user-images.githubusercontent.com/93736464/186168804-53753eac-4e0b-487b-bd42-3e21e2b75210.jpg)
+![PostCrear](https://user-images.githubusercontent.com/93736464/188291760-1c7af063-6acc-43a7-9086-72a4c3ed00c1.jpg)
+![PostModificar](https://user-images.githubusercontent.com/93736464/188291765-d86ef134-0450-4725-9fb9-412512db2f82.jpg)
 
 * Contacto
-![contacto](https://user-images.githubusercontent.com/93736464/186168918-c0e41d79-2135-4e27-9b6c-4c38901d7e43.jpg)
+![contacto](https://user-images.githubusercontent.com/93736464/188291798-3520c8d5-3c45-4e1e-a91a-094c84a1cdc7.jpg)
 
+* Profile
+![Profile](https://user-images.githubusercontent.com/93736464/188291723-3535c92b-a545-4e05-a03e-77593ead3ab3.jpg)
 
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 **Importante:** Este ejemplo fue probado con python Python 3.10.4 y Django 4.0.6
@@ -59,6 +55,10 @@ Si no arrojo errores esto es suficiente para poder correr el proyecto.
 
 ## Instalar django-crispy
 ```$pip install django-crispy-forms ```
+
+## Instalar django-ckeditor
+```$pip install django-ckeditor ```
+
 
 ## Clonar el projecto con git
 windows:
