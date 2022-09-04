@@ -16,7 +16,7 @@ Modelos
 Templates
 Urls
 ## Un resumen en Video!🎥
-[![AppBlog](https://youtu.be/1GX3cfIq6fw)
+![AppBlog](https://youtu.be/1GX3cfIq6fw)
 
 ## Capturas de cada Módulo:
 
