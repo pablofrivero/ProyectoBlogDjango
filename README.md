@@ -17,7 +17,10 @@ Templates
 Urls
 ## Un resumen en Video!🎥
 [AppBlog](https://youtu.be/1GX3cfIq6fw)
+[![AppBlog](http://img.youtube.com/vi/T-D1KVIuvjA/0.jpg)](https://youtu.be/1GX3cfIq6fw)
 
+
+Fuente: https://www.iteramos.com/pregunta/16559/como-incrustar-un-video-en-github-readmemd
 ## Capturas de cada Módulo:
 
 * Inicio
