@@ -15,7 +15,8 @@ Formularios
 Modelos
 Templates
 Urls
-
+## Un resumen en Video!
+[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://youtu.be/1GX3cfIq6fw)
 ## Capturas de cada Módulo:
 
 * Inicio
