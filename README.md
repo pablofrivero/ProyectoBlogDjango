@@ -32,6 +32,7 @@ Urls
 ![contacto](https://user-images.githubusercontent.com/93736464/186168918-c0e41d79-2135-4e27-9b6c-4c38901d7e43.jpg)
 
 * Profile
+![Profile](https://user-images.githubusercontent.com/93736464/188291723-3535c92b-a545-4e05-a03e-77593ead3ab3.jpg)
 
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 **Importante:** Este ejemplo fue probado con python Python 3.10.4 y Django 4.0.6
