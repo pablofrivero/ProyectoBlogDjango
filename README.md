@@ -65,7 +65,7 @@ Si no arrojo errores esto es suficiente para poder correr el proyecto.
 ```$pip install django-ckeditor ```
 
 
-## Clonar el projecto con git
+## Clonar el proyecto con git
 windows:
 
 ```C:\> git clone https://github.com/pablofrivero/ProyectoBlogDjango.git```
